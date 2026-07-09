@@ -204,11 +204,16 @@
     padding:4px 0 4px 18px; font-style:italic; color:var(--blueprint-2);
   }
 
-  .hero, .hero *,
-  #abstract, #abstract *,
-  #corpus, #corpus *,
-  #approach, #approach *{
+  .hero *:not(.sheet-num):not(.mark):not(.atlas-id),
+  #abstract *:not(.sheet-num):not(.mark):not(.atlas-id),
+  #corpus *:not(.sheet-num):not(.mark):not(.atlas-id),
+  #approach *:not(.sheet-num):not(.mark):not(.atlas-id){
     color:#000 !important;
+  }
+  .hero .sheet-num, #abstract .sheet-num, #corpus .sheet-num, #approach .sheet-num,
+  .hero .mark, #abstract .mark, #corpus .mark, #approach .mark,
+  .hero .atlas-id, #abstract .atlas-id, #corpus .atlas-id, #approach .atlas-id{
+    color:var(--redline) !important;
   }
 
 .approach-flex{display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;}
@@ -229,7 +234,7 @@
 #approach .wrap{max-width:1240px;}
 #approach .illustration-strip{overflow-x:auto;padding-bottom:12px;}
 #approach .illustration-strip svg{
-  min-width:1120px;
+  min-width:1340px;
   height:auto;
   display:block;
   margin:0 auto;
@@ -248,7 +253,8 @@
 <a href="https://connectmjosede-prog.github.io/clipsight/#atlas">04 Atlas</a>
 <a href="https://connectmjosede-prog.github.io/clipsight/#reflection">05 Reflection</a>
 <a href="https://connectmjosede-prog.github.io/clipsight/#limitations">06 Limits</a>
-<a href="https://connectmjosede-prog.github.io/clipsight/#sources">07 Sources</a>
+<a href="https://connectmjosede-prog.github.io/clipsight/#ai-use">07 AI Use</a>
+<a href="https://connectmjosede-prog.github.io/clipsight/#sources">08 Sources</a>
 </nav>
 </div>
 </div>
@@ -767,11 +773,11 @@
 <div class="illustration-strip">
 <svg aria-label="Pipeline diagram: Corpus, Encode, Index, Query, Rank, Surface" id="approach-pipeline" role="img" viewBox="0 0 1160 155" xmlns="http://www.w3.org/2000/svg">
 <style>
-    .pl-ink{ fill:none; stroke:var(--ink); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
-    .pl-ink-fill{ fill:var(--ink); stroke:none; }
+    .pl-ink{ fill:none; stroke:var(--redline); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .pl-ink-fill{ fill:var(--redline); stroke:none; }
     .pl-wave{ fill:none; stroke:var(--blueprint); stroke-width:1; opacity:0.4; }
-    .pl-chevron{ fill:none; stroke:var(--concrete); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
-    .pl-label{ font-family:var(--mono); font-size:15px; font-weight:600; fill:var(--ink); letter-spacing:0.02em; }
+    .pl-chevron{ fill:none; stroke:var(--redline); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .pl-label{ font-family:var(--mono); font-size:15px; font-weight:600; fill:var(--redline); letter-spacing:0.02em; }
     .pl-desc{ font-family:var(--mono); font-size:11px; fill:var(--concrete); letter-spacing:0.01em; }
   </style>
 <!-- connecting wave -->
@@ -1117,10 +1123,19 @@
 </ul>
 </div>
 </section>
-<section class="sheet gridpaper" id="sources">
+<section class="sheet" id="ai-use">
 <div class="wrap">
 <div class="sheet-head">
 <span class="sheet-num">SHEET 07</span>
+<h2>AI Use Statement</h2>
+</div>
+<p>Claude (Anthropic) was used during this project for debugging support code, drafting and refining the documentation site's HTML/CSS, and structuring written explanations. All corpus curation, query design, retrieval analysis, and interpretive claims in the atlas and reflection above are my own.</p>
+</div>
+</section>
+<section class="sheet gridpaper" id="sources">
+<div class="wrap">
+<div class="sheet-head">
+<span class="sheet-num">SHEET 08</span>
 <h2>Sources</h2>
 </div>
 <ol class="sources">
@@ -1128,6 +1143,7 @@
 <li>Yuksekgonul, M., Bianchi, F., Kalluri, P., Jurafsky, D., &amp; Zou, J. (2023). <em>When and Why Vision-Language Models Behave Like Bags-of-Words, and What to Do About It?</em> (ARO benchmark). ICLR.</li>
 <li>Thrush, T., Jiang, R., Bartolo, M., et al. (2022). <em>Winoground: Probing Vision and Language Models for Visio-Linguistic Compositionality.</em> CVPR.</li>
 </ol>
+<p style="margin-top:24px; font-family:var(--mono); font-size:var(--h-small); color:var(--concrete);">Colab notebook, cached embeddings, and corpus access were submitted separately per the assignment's submission requirements, not linked here.</p>
 </div>
 </section>
 </main>
@@ -1135,4 +1151,41 @@
   Miya Jose · MA Design for Digital Futures · TH Nürnberg · CompSci for Designers 2, Summer 2026
 </footer>
 
+<style>
+  .approach-shot img, .sheet-block img{cursor:zoom-in;}
+  #lb-overlay{
+    display:none; position:fixed; inset:0; background:rgba(20,18,16,0.92);
+    z-index:999; align-items:center; justify-content:center; padding:32px; cursor:zoom-out;
+  }
+  #lb-overlay.open{display:flex;}
+  #lb-overlay img{max-width:94vw; max-height:90vh; object-fit:contain; box-shadow:0 8px 40px rgba(0,0,0,0.5);}
+  #lb-close{
+    position:absolute; top:20px; right:28px; color:#fff; font-family:var(--mono);
+    font-size:15px; background:none; border:1px solid rgba(255,255,255,0.5); border-radius:3px;
+    padding:6px 12px; cursor:pointer;
+  }
+  #lb-close:hover{border-color:#fff;}
+</style>
+<div id="lb-overlay"><button id="lb-close" type="button">CLOSE ✕</button><img id="lb-img" src="" alt=""></div>
+<script>
+(function(){
+  var overlay = document.getElementById('lb-overlay');
+  var lbImg = document.getElementById('lb-img');
+  function openLightbox(src, alt){
+    lbImg.src = src; lbImg.alt = alt || '';
+    overlay.classList.add('open');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('open'); lbImg.src = '';
+  }
+  document.addEventListener('click', function(e){
+    var img = e.target.closest('.approach-shot img, .sheet-block img');
+    if(img){ openLightbox(img.src, img.alt); return; }
+    if(e.target === overlay || e.target.id === 'lb-close'){ closeLightbox(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
 </body></html>
