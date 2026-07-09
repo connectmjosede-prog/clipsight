@@ -211,6 +211,21 @@
     color:#000 !important;
   }
 
+.approach-flex{display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;}
+.approach-flex .prose{flex:1 1 380px; min-width:280px;}
+.approach-flex .approach-shot{flex:1 1 380px; min-width:280px;}
+
+.approach-shot{margin-top:0; max-width:520px; border:1px solid var(--line); background:var(--paper-2); padding:14px;}
+.approach-shot img{width:100%; height:auto; display:block; border:1px solid var(--line);}
+.approach-shot figcaption{
+  font-family:var(--mono); font-size:var(--h-small); color:var(--blueprint-2);
+  letter-spacing:0.01em; line-height:1.5; margin-top:12px;
+}
+@media (max-width:800px){
+  .approach-flex{flex-wrap:wrap;}
+  .approach-shot{max-width:100%; margin-top:36px;}
+}
+
 #approach .wrap{max-width:1240px;}
 #approach .illustration-strip{overflow-x:auto;padding-bottom:12px;}
 #approach .illustration-strip svg{
@@ -842,9 +857,15 @@
 <span class="sheet-num">SHEET 03</span>
 <h2>Approach</h2>
 </div>
+<div class="approach-flex">
 <div class="prose">
 <p>Level 1 - The Finder: joint embedding, no captioning, no generation. Everything the system knows comes from where an image and a phrase land in the same vector space. Images are embedded once and cached; a query is embedded into the same space at request time, and results are ranked by cosine similarity with an adjustable top‑<em>k</em> and similarity threshold.</p>
 <p>My work was corpus curation, query design across ten documented cases, and threshold/top‑<em>k</em> tuning - not the embedding loop itself, which came from the course starter notebook.</p>
+</div>
+<figure class="approach-shot">
+<img alt="Screenshot of the Gradio interface for ClipSight, showing a text query box and a grid of ranked retrieval results" src="gradio-live.png">
+<figcaption>The Gradio interface: query in, ranked results out, every search auto-logged to the retrieval atlas below.</figcaption>
+</figure>
 </div>
 </div>
 </section>
